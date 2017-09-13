@@ -1,15 +1,3 @@
-#-*- coding:utf-8 -*-
-"""
-@author: gxjun
-@file: base_rnn.py
-@time: 17-9-6 下午3:09
-"""
-
-"""
-elman net 最基本的RNN模型，单环结构，简单的运用到：tanh,softmax,交叉熵，kl散度知识点
-代码是学习了：http://mnemstudio.org/neural-networks-elman.htm
-"""
-
 # -*- coding:utf-8 -*-
 """
 @author: gxjun
@@ -82,7 +70,7 @@ def backward(x, y, state):
         prob = softmax(output);
         probs[i] = prob;
         pred = np.argmax(prob)  # Y值
-        loss += (-np.log(prob[y[i], 0]));  # softmax 求交叉熵
+        loss += (-1*np.log(prob[y[i], 0]));  # softmax 求交叉熵 sum(p*(np.log(q)))
     """计算梯度grad,对hidden_weight , unroll_weight , output_weight,hidden_biase , output_biase"""
     bhidden_weight, bunroll_weight, boutput_weight = np.zeros_like(hidden_weight), np.zeros_like(
         unroll_weight), np.zeros_like(output_weight)
